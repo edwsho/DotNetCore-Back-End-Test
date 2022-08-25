@@ -4,7 +4,6 @@ using BackEndPortafolioTarjeta.Infrastructure.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TarjetaCredito.Domain.DomainObject;
-using TarjetaCredito.Infrastructure;
 
 namespace BackEndPortafolioTarjeta.Controllers
 {
