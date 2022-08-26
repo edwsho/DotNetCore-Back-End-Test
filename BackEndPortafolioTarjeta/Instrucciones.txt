@@ -1,0 +1,43 @@
+Estan expuestos 5 metodos:
+
+	1.- /api/SolicitudHogwarts/GetSolicitud   (Obtiene todas las colicitudes de ingreso a Hogwarts).
+	2.- /api/SolicitudHogwarts/_id           (Obtiene una solicitud en especifico proporcionandole el Id.)
+	3.- /api/SolicitudHogwarts/PostSolicitud (El cual se encarga de agregar una solicitud de ingreso, en Swagger se tiene un modelo del objeto Json para agregar.)
+	4.- /api/SolicitudHogwarts (Put)         (El cual se encarga de editar una solicitud de ingreso, en Swagger se tiene un modelo del objeto Json para editar (Debe corresponder el Id).)
+	5.- /api/SolicitudHogwarts/id (Delete)   (Se encarga de eliminar una solicitud de ingreso, el cual se le debe pasar el Id de la solicitud que se quiere eliminar.)
+
+
+El api esta dividido en Dos secciones:
+
+1.- SolicitudHogwarts: El cual tiene como concepto de persistencia una conexion con SQL SERVER, la cual se describe a continuacion:
+
+        --1er Paso: 
+
+        Se ejecuta la migracion a la base de datos Sql server ejecutando el siguiente comando en el PM(Package Manager)
+
+            Comando       Nombre de la migracion    Flag     Nombre de la Clase que contiene el Contexto
+        PM> add-migration AddSolicitudHogwartsTable -Context SolicitudHogwartsDbContext
+
+
+        --2do Paso:
+        Se ejecuta el siguiente comando para actualizar la Base de datos Sql server ejecutando el siguiente comando en el PM(Package Manager):
+
+        Nota: La base de Datos con la Tabla se guardara en el servidor Local de Sql Server, se muestra la cadena de conexion para ejemplificar.
+
+        "Server=(local)\\sqlexpress;Database=SolicitudHogwartsDb;Trusted_Connection=True;MultipleActiveResultSets=True;"
+
+            Comando         Flag     Nombre de la Clase que contiene el Contexto
+        PM> update-database -Context SolicitudHogwartsDbContext 
+
+        Unicamente se necesitan las dependiencias correspondientes a EntityFramewrok para las dependencias:
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
+
+
+2.- SolicitudHogwartsInMemory: Este tiene como concepto de persistencia la dependencia InMemory utilizando EntityFramework.
+
+Dependencias:
+	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.5" />
+  
+
